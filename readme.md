@@ -1,59 +1,49 @@
-# Project Title
+# Project Description
 
-This is 
-## Getting Started
+The task was Design and build the following: 
+1. A front end which accepts a number input N with a Submit button (extra points for building frontend in Angular or React or a HTML5 framework)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+2. On entering a value and pressing submit, a request should be sent to the backend (backend can be in any technology, extra points for using nodejs)
+
+3. From the backend, fetch a file hosted at http://terriblytinytales.com/test.txt
+
+4. From the backend, return the top N most frequently occurring words in this file
+
+5. Display the top N words and their frequency of occurrence in the frontend, in a tabular format
 
 ### Prerequisites
-
 What things you need to install the software and how to install them
-
+Install homebrew
 ```
-Give examples
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+Install npm : Package manager for the JavaScript 
+```
+npm install npm@latest -g
+```
+Install git :
+```
+brew install git
 ```
 
+Libraries
+nodemon
+```
+npm install -g nodemon
+```
 ### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+Download the zip file or clone it, then run the following commands
 ```
-Give the example
+npm install
+
+nodemon
 ```
+Then your local server will start running on localhost:3000
 
-And repeat
 
-```
-until finished
-```
+## Hosted on Heroku
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+The following project has been hosted at Heroku https://polar-brook-88090.herokuapp.com/
 
 
 ## Authors
