@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<body>
+<div class="jumbotron">
+    <h3> &nbsp; &nbsp; Task for Terribly Tiny Tales</h3>
+    <p>&nbsp;&nbsp;From the backend, return the top N most frequently occurring words in this file.</p>
+</div>
+
+<div class="container">
+
+    <div ng-app="myApp" ng-controller="formCtrl">
+
+    <form >
+        <div class="form-group">
+          <label for="n">Enter number</label>
+          <input type="number" class="form-control" id="n" name="n" ng-model="num"
+                 placeholder="Top N most frequently occurring words in this file">
+        </div>
+        <button type="submit" onclick="fireRequest()" id="n_submit" class="btn btn-danger" name="Submit">Submit</button>
+    </form>
+    <div>  Top {{num}} most frequently used worlds in the file are <br>
+        <table id="words" class="table table-bordered">
+            <tr class="success">
+                <th>Word</th>
+                <th>No. of occurances</th>
+            </tr>
+
+
+        </table></div>
+
+
+    </div>
+</div>
+
+<script>
+
+    function fireRequest()
+    {
+
+        var n=$("#n").val();
+
+        $.ajax({
+            url: '/n',
+            type: "POST",
+            data: JSON.stringify({
+                "n":n
+            }),
+            dataType: "json",
+            contentType: "application/json",
+            complete: function() {
+                //called when complete
+                console.log('process complete');
+            },
+            success: function(data) {
+
+                document.getElementById("words").innerHTML = "<tr class='success'> <th>Word</th> <th>No. of occurances</th> </tr>";
+
+                for(var i=0;i<data.data.length;i++){
+
+                    document.getElementById('words').innerHTML+="<tr><td >"+ data.data[i]+"</td><td>"+ data.data[i+1]+"</td></tr> ";
+                    i++;
+
+                }
+
+                console.log('process sucess');
+            },
+            error: function() {
+                console.log('process error');
+            }
+        });
+
+    }
+
+
+    var app = angular.module('myApp', []);
+
+    app.controller('formCtrl', function($scope) {
+        $scope.num = 0;
+    });
+</script>
+</body>
+</html>
